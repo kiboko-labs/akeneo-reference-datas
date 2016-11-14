@@ -10,6 +10,7 @@ use Composer\Plugin\PluginEvents;
 use Composer\Plugin\PluginInterface;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineColumnAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
+use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldGetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldSetMethodCodeGenerator;
@@ -67,6 +68,10 @@ class DatetimePlugin implements PluginInterface, EventSubscriberInterface
         }
 
         $productValueClass = new ProductValueCodeGenerator('ProductValue', $namespace . '\\Model');
+
+        $productValueClass->addInternalField(
+            (new DoctrineEntityReferenceFieldCodeGenerator('created', 'DateTimeInterface'))
+        );
 
         $productValueClass->addMethod(
             (new DoctrineEntityScalarFieldGetMethodCodeGenerator('created', 'DateTimeInterface'))

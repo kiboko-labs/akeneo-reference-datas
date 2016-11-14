@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "be7ffb8970c84c7fda6cf9bd5c55d118",
+    "hash": "839de79482d3e5e85026ce8a7f2130f2",
     "content-hash": "383188c65149f44ddac3aa5a74b5bd46",
     "packages": [
         {
@@ -135,12 +135,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kiboko-labs/akeneo-product-values-management.git",
-                "reference": "c07f575444fe526a0be15bbf2ff5a25be04fd51e"
+                "reference": "92b9b45a5f9a40fc0b147d2817e3b89a6223d447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/c07f575444fe526a0be15bbf2ff5a25be04fd51e",
-                "reference": "c07f575444fe526a0be15bbf2ff5a25be04fd51e",
+                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/92b9b45a5f9a40fc0b147d2817e3b89a6223d447",
+                "reference": "92b9b45a5f9a40fc0b147d2817e3b89a6223d447",
                 "shasum": ""
             },
             "require": {
@@ -174,7 +174,7 @@
                 }
             ],
             "description": "Generate your product value class",
-            "time": "2016-11-14 00:07:50"
+            "time": "2016-11-14 19:50:00"
         },
         {
             "name": "league/flysystem",
@@ -363,12 +363,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "5934ab27e27ea66a57c1879e397299221b7f53e9"
+                "reference": "8e649c72b83a86851ce234e305d2502f234c0ffa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/5934ab27e27ea66a57c1879e397299221b7f53e9",
-                "reference": "5934ab27e27ea66a57c1879e397299221b7f53e9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/8e649c72b83a86851ce234e305d2502f234c0ffa",
+                "reference": "8e649c72b83a86851ce234e305d2502f234c0ffa",
                 "shasum": ""
             },
             "require": {
@@ -418,7 +418,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-06 16:27:54"
+            "time": "2016-11-14 16:20:13"
         },
         {
             "name": "symfony/debug",
@@ -542,12 +542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e0c8bd45fdab197ccdd4723125e4ed424f54288d"
+                "reference": "92e2f6deeda11ffaf001caa2e43f7fc13f0eee19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/e0c8bd45fdab197ccdd4723125e4ed424f54288d",
-                "reference": "e0c8bd45fdab197ccdd4723125e4ed424f54288d",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/92e2f6deeda11ffaf001caa2e43f7fc13f0eee19",
+                "reference": "92e2f6deeda11ffaf001caa2e43f7fc13f0eee19",
                 "shasum": ""
             },
             "require": {
@@ -589,7 +589,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-06 16:24:48"
+            "time": "2016-11-14 16:20:13"
         }
     ],
     "packages-dev": [
@@ -967,16 +967,16 @@
         },
         {
             "name": "seld/jsonlint",
-            "version": "1.4.1",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "e827b5254d3e58c736ea2c5616710983d80b0b70"
+                "reference": "19495c181d6d53a0a13414154e52817e3b504189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/e827b5254d3e58c736ea2c5616710983d80b0b70",
-                "reference": "e827b5254d3e58c736ea2c5616710983d80b0b70",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/19495c181d6d53a0a13414154e52817e3b504189",
+                "reference": "19495c181d6d53a0a13414154e52817e3b504189",
                 "shasum": ""
             },
             "require": {
@@ -1009,7 +1009,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2016-09-14 15:17:56"
+            "time": "2016-11-14 17:59:58"
         },
         {
             "name": "seld/phar-utils",

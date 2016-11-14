@@ -39,6 +39,5 @@ class DatetimePlugin implements PluginInterface, EventSubscriberInterface
     public function onPostPackageInstall(PackageEvent $event)
     {
         var_dump($this->composer->getConfig()->all());
-        var_dump($event);
     }
 }

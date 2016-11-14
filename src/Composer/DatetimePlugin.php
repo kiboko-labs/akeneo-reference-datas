@@ -8,7 +8,6 @@ use Composer\Installer\PackageEvent;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
 use Kiboko\AkeneoProductValuesPackage\Datetime\Builder\DatetimeRule;
-use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
 use Kiboko\Component\AkeneoProductValues\Composer\ReferenceDataInstaller;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;

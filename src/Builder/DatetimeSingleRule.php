@@ -4,7 +4,13 @@ namespace Kiboko\AkeneoProductValuesPackage\Datetime\Builder;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineColumnAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
 use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;
+use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldCodeGenerator;
+use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldGetMethodCodeGenerator;
+use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldSetMethodCodeGenerator;
+use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
 
 class DatetimeRule implements RuleInterface
 {
@@ -122,5 +128,15 @@ class DatetimeRule implements RuleInterface
                 $productValueClass->getNode()
             ]
         );
+    }
+
+    public function getName()
+    {
+        return 'dateteime.single';
+    }
+
+    public function getReferenceClass()
+    {
+        return \DateTimeInterface::class;
     }
 }

@@ -70,7 +70,9 @@ class DatetimePlugin implements PluginInterface, EventSubscriberInterface
         $productValueClass = new ProductValueCodeGenerator('ProductValue', $namespace . '\\Model');
 
         $productValueClass->addInternalField(
-            (new DoctrineEntityReferenceFieldCodeGenerator('created', 'DateTimeInterface'))
+            (new DoctrineEntityScalarFieldCodeGenerator('created', 'DateTimeInterface', [
+                new DoctrineColumnAnnotationGenerator('datetime'),
+            ]))
         );
 
         $productValueClass->addMethod(

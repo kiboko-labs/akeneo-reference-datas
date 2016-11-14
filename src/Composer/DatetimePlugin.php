@@ -6,15 +6,10 @@ use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Installer\PackageEvent;
 use Composer\IO\IOInterface;
-use Composer\Plugin\PluginEvents;
 use Composer\Plugin\PluginInterface;
-use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineColumnAnnotationGenerator;
+use Kiboko\AkeneoProductValuesPackage\Datetime\Builder\DatetimeRule;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
-use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;
-use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldCodeGenerator;
-use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldGetMethodCodeGenerator;
-use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldSetMethodCodeGenerator;
-use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
+use Kiboko\Component\AkeneoProductValues\Composer\ReferenceDataInstaller;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
 
@@ -56,43 +51,14 @@ class DatetimePlugin implements PluginInterface, EventSubscriberInterface
     public function onPostPackageInstall(PackageEvent $event)
     {
         $root = $this->composer->getConfig()->get('akeneo-appbundle-root-dir') ?: 'src';
-        $vendor = $this->composer->getConfig()->get('akeneo-appbundle-vendor-name');
+        $vendor = $this->composer->getConfig()->get('akeneo-appbundle-vendor-name') ?: null;
         $bundle = $this->composer->getConfig()->get('akeneo-appbundle-bundle-name') ?: 'AppBundle';
 
-        if ($vendor === '') {
-            $namespace = $bundle;
-            $path = $bundle . '/';
-        } else {
-            $namespace = $vendor . '\\Bundle\\' . $bundle;
-            $path = $vendor . '/Bundle/' . $bundle . '/';
-        }
+        /** @var ReferenceDataInstaller $installer */
+        $installer = $this->composer->getInstallationManager()->getInstaller('akeneo-reference-data');
+        vat_dump(get_class($installer));
 
-        $productValueClass = new ProductValueCodeGenerator('ProductValue', $namespace . '\\Model');
-
-        $productValueClass->addInternalField(
-            (new DoctrineEntityScalarFieldCodeGenerator('created', 'DateTimeInterface', [
-                new DoctrineColumnAnnotationGenerator('datetime'),
-            ]))
-        );
-
-        $productValueClass->addMethod(
-            (new DoctrineEntityScalarFieldGetMethodCodeGenerator('created', 'DateTimeInterface'))
-        );
-
-        $productValueClass->addMethod(
-            (new DoctrineEntityScalarFieldSetMethodCodeGenerator('created', 'DateTimeInterface'))
-        );
-
-        $productValueClass->addUseStatement('DateTimeInterface');
-
-        $builder = new BundleBuilder();
-        $builder->setFileDefinition('Model/ProductValue.php',
-            [
-                $productValueClass->getNode()
-            ]
-        );
-
-        $builder->initialize($this->filesystem, $root . '/' . $path);
-        $builder->generate($this->filesystem, $root . '/' . $path);
+        $rule = new DatetimeRule($root, $bundle, $vendor, 'datetime');
+        $installer->registerRule($rule);
     }
 }

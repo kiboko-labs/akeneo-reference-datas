@@ -7,7 +7,7 @@ use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Installer\PackageEvent;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
-use Kiboko\AkeneoProductValuesPackage\Datetime\Builder\DatetimeRule;
+use Kiboko\AkeneoProductValuesPackage\Datetime\Builder\DatetimeSingleRule;
 use Kiboko\Component\AkeneoProductValues\Composer\ReferenceDataInstaller;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
@@ -60,7 +60,7 @@ class DatetimePlugin implements PluginInterface, EventSubscriberInterface
         $installer = $this->composer->getInstallationManager()->getInstaller('akeneo-reference-data');
         var_dump(get_class($installer));
 
-        $rule = new DatetimeRule($root, $bundle, $vendor, 'datetime');
+        $rule = new DatetimeSingleRule($root, $bundle, $vendor, 'datetime');
         $installer->registerRule($rule);
     }
 }

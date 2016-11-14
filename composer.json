@@ -1,0 +1,28 @@
+{
+    "name": "kiboko/akeneo-reference-data-datetime",
+    "description": "Adds a DateTime reference data to your Akeneo ProductValue",
+    "type": "composer-plugin",
+    "require": {
+        "composer-plugin-api": "^1.0",
+        "kiboko/akeneo-product-values-management": "dev-master"
+    },
+    "extra": {
+        "class": "Kiboko\\AkeneoProductValuesPackage\\Datetime\\Composer\\DatetimePlugin"
+    },
+    "license": "lgpl",
+    "authors": [
+        {
+            "name": "Grégory Planchat",
+            "email": "gregory@kiboko.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Kiboko\\AkeneoProductValuesPackage\\Datetime\\": "src/"
+        }
+    },
+    "require-dev": {
+        "composer/composer": "^1.2"
+    }
+}

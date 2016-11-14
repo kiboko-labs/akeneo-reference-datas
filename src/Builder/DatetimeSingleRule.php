@@ -12,7 +12,7 @@ use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEn
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldSetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
 
-class DatetimeRule implements RuleInterface
+class DatetimeSingleRule implements RuleInterface
 {
     /**
      * @var string

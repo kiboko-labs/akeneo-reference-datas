@@ -31,7 +31,7 @@ class DatetimePlugin implements PluginInterface, EventSubscriberInterface
     {
         return [
             'post-package-install' => [
-                ['onPostAutoloadDump', 0]
+                ['onPostPackageInstall', 0]
             ],
         ];
     }

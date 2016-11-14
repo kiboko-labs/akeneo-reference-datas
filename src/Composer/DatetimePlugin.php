@@ -45,6 +45,9 @@ class DatetimePlugin implements PluginInterface, EventSubscriberInterface
             'post-package-install' => [
                 ['onPostPackageInstall', 0]
             ],
+            'post-package-update' => [
+                ['onPostPackageInstall', 0]
+            ],
         ];
     }
 
@@ -56,7 +59,7 @@ class DatetimePlugin implements PluginInterface, EventSubscriberInterface
 
         /** @var ReferenceDataInstaller $installer */
         $installer = $this->composer->getInstallationManager()->getInstaller('akeneo-reference-data');
-        vat_dump(get_class($installer));
+        var_dump(get_class($installer));
 
         $rule = new DatetimeRule($root, $bundle, $vendor, 'datetime');
         $installer->registerRule($rule);

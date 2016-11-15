@@ -135,12 +135,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kiboko-labs/akeneo-product-values-management.git",
-                "reference": "92b9b45a5f9a40fc0b147d2817e3b89a6223d447"
+                "reference": "c60491a3fb50ee3b8fef5376b2ec7316c68d3755"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/92b9b45a5f9a40fc0b147d2817e3b89a6223d447",
-                "reference": "92b9b45a5f9a40fc0b147d2817e3b89a6223d447",
+                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/c60491a3fb50ee3b8fef5376b2ec7316c68d3755",
+                "reference": "c60491a3fb50ee3b8fef5376b2ec7316c68d3755",
                 "shasum": ""
             },
             "require": {
@@ -174,7 +174,7 @@
                 }
             ],
             "description": "Generate your product value class",
-            "time": "2016-11-14 19:50:00"
+            "time": "2016-11-15 00:28:44"
         },
         {
             "name": "league/flysystem",

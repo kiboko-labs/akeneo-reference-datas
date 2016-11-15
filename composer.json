@@ -1,7 +1,7 @@
 {
     "name": "kiboko/akeneo-reference-data-datetime",
     "description": "Adds a DateTime reference data to your Akeneo ProductValue",
-    "type": "akeneo-reference-data",
+    "type": "composer-plugin",
     "require": {
         "composer-plugin-api": "^1.0",
         "kiboko/akeneo-product-values-management": "dev-master"

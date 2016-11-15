@@ -132,7 +132,7 @@ class DatetimeMultipleRule implements RuleInterface
 
     public function getName()
     {
-        return 'dateteime.single';
+        return 'dateteime.multiple';
     }
 
     public function getReferenceClass()

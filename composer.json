@@ -7,7 +7,7 @@
         "kiboko/akeneo-product-values-management": "dev-master"
     },
     "extra": {
-        "class": "Kiboko\\AkeneoProductValuesPackage\\Datetime\\Composer\\DatetimePlugin"
+        "class": "Kiboko\\Component\\AkeneoProductValuesPackage\\Composer\\DatetimePlugin"
     },
     "license": "lgpl",
     "authors": [
@@ -16,10 +16,17 @@
             "email": "gregory@kiboko.fr"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/akeneo/pim-community-dev.git",
+            "branch": "master"
+        }
+    ],
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Kiboko\\AkeneoProductValuesPackage\\Datetime\\": "src/"
+            "Kiboko\\Component\\AkeneoProductValuesPackage\\": "src/"
         }
     },
     "require-dev": {

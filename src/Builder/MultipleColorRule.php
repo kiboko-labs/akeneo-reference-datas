@@ -10,9 +10,6 @@ use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldGetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldSetMethodCodeGenerator;
-use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldCodeGenerator;
-use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldGetMethodCodeGenerator;
-use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldSetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\Visitor\CodeGeneratorApplierVisitor;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -21,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
-class DatetimeSingleRule implements RuleInterface
+class MultipleColorRule implements RuleInterface
 {
     /**
      * @var string
@@ -171,13 +168,15 @@ class DatetimeSingleRule implements RuleInterface
         $builder->mergeClassDefinition(
             'Model/ProductValue.php',
             $this->namespace . '\\Model',
-            $productValueClass->getNode()
+            [
+                $productValueClass->getNode()
+            ]
         );
     }
 
     public function getName()
     {
-        return 'datetime.single';
+        return 'color.multiple';
     }
 
     public function getReferenceClass()

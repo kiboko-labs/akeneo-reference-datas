@@ -3,8 +3,8 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Composer;
 
 use Composer\Composer;
-use Kiboko\Component\AkeneoProductValuesPackage\Builder\DatetimeMultipleRule;
-use Kiboko\Component\AkeneoProductValuesPackage\Builder\DatetimeSingleRule;
+use Kiboko\Component\AkeneoProductValuesPackage\Builder\MultipleColorRule;
+use Kiboko\Component\AkeneoProductValuesPackage\Builder\SingleColorRule;
 use Kiboko\Component\AkeneoProductValues\Composer\RuleCapability as RuleCapabilityInterface;
 
 class RuleCapability implements RuleCapabilityInterface
@@ -16,8 +16,8 @@ class RuleCapability implements RuleCapabilityInterface
         $bundle = $composer->getConfig()->get('akeneo-appbundle-bundle-name') ?: 'AppBundle';
 
         return [
-            'dateteime.single' => new DatetimeSingleRule($root, $bundle, $vendor),
-            'dateteime.multiple' => new DatetimeMultipleRule($root, $bundle, $vendor),
+            'color.single'   => new SingleColorRule($root, $bundle, $vendor),
+            'color.multiple' => new MultipleColorRule($root, $bundle, $vendor),
         ];
     }
 }

@@ -11,6 +11,11 @@ use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEn
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldGetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldSetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
+use Symfony\Component\Console\Helper\QuestionHelper;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Console\Question\Question;
 
 class DatetimeMultipleRule implements RuleInterface
 {
@@ -95,33 +100,29 @@ class DatetimeMultipleRule implements RuleInterface
     }
 
     /**
-     * @param IOInterface $io
+     * @param InputInterface $input
+     * @param OutputInterface $output
      * @param Composer $composer
      * @return bool
      */
-    public function interact(IOInterface $io, Composer $composer)
+    public function interact(InputInterface $input, OutputInterface $output, Composer $composer)
     {
-        $this->fieldName = $io->askAndValidate(
-            [
-                'Please enter the field name'
-            ],
-            function ($value) {
-                return preg_match('/[a-z][A-Za-z0-9]*/', $value);
-            },
-            2,
-            $this->defaultField
-        );
+        $helper = new QuestionHelper();
 
-        return $io->askConfirmation(
-            [
-                sprintf(
-                    'You are about to to add a single reference data of type "%s" in the "%s" field of your Akeneo ProductValue class',
-                    $this->namespace === null ? $this->class : ($this->namespace  .'\\'. $this->class),
-                    $this->fieldName
-                ),
-                'Are you sure ? [<info>Y</info>/<info>n</info>]'
-            ]
-        );
+        $fieldNameQuestion = new Question('Please enter the field name', $this->defaultField);
+        $fieldNameQuestion->setValidator(function ($value) {
+            return preg_match('/[a-z][A-Za-z0-9]*/', $value);
+        })->setMaxAttempts(2);
+
+        $helper->ask($input, $output, $fieldNameQuestion);
+
+        $confirmation = new ConfirmationQuestion(sprintf(
+            'You are about to to add a single reference data of type "%s" in the "%s" field of your Akeneo ProductValue class',
+            $this->namespace === null ? $this->class : ($this->namespace  .'\\'. $this->class),
+            $this->fieldName
+        ));
+
+        return $helper->ask($input, $output, $confirmation);
     }
 
     public function applyTo(BundleBuilder $builder)

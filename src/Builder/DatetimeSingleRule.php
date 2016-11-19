@@ -7,10 +7,14 @@ use Composer\IO\IOInterface;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineColumnAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
 use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;
+use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;
+use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldGetMethodCodeGenerator;
+use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldSetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldGetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityScalarFieldSetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
+use Kiboko\Component\AkeneoProductValues\Visitor\CodeGeneratorApplierVisitor;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -127,28 +131,47 @@ class DatetimeSingleRule implements RuleInterface
 
     public function applyTo(BundleBuilder $builder)
     {
+        $visitor = new CodeGeneratorApplierVisitor();
+
+        $visitor->appendPropertyCodeGenerator(
+            new DoctrineEntityReferenceFieldCodeGenerator(
+                $this->getFieldName(),
+                'Color',
+                'Kiboko\\Component\\AkeneoProductValuesPackage\\Model',
+                [
+                    new DoctrineColumnAnnotationGenerator('datetime'),
+                ]
+            )
+        );
+
+        $visitor->appendMethodCodeGenerator(
+            new DoctrineEntityReferenceFieldGetMethodCodeGenerator(
+                $this->getFieldName(),
+                'Color',
+                'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
+            )
+        );
+
+        $visitor->appendMethodCodeGenerator(
+            new DoctrineEntityReferenceFieldSetMethodCodeGenerator(
+                $this->getFieldName(),
+                'Color',
+                'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
+            )
+        );
+
+        $builder->visitClassDefinition(
+            $this->namespace . '\\Model\\ProductValue',
+            [
+                $visitor
+            ]
+        );
         $productValueClass = new ProductValueCodeGenerator('ProductValue', $this->namespace . '\\Model');
 
-        $productValueClass->addInternalField(
-            (new DoctrineEntityScalarFieldCodeGenerator($this->getFieldName(), 'DateTimeInterface', [
-                new DoctrineColumnAnnotationGenerator('datetime'),
-            ]))
-        );
-
-        $productValueClass->addMethod(
-            (new DoctrineEntityScalarFieldGetMethodCodeGenerator($this->getFieldName(), 'DateTimeInterface'))
-        );
-
-        $productValueClass->addMethod(
-            (new DoctrineEntityScalarFieldSetMethodCodeGenerator($this->getFieldName(), 'DateTimeInterface'))
-        );
-
-        $productValueClass->addUseStatement('DateTimeInterface');
-
-        $builder->setFileDefinition('Model/ProductValue.php',
-            [
-                $productValueClass->getNode()
-            ]
+        $builder->mergeClassDefinition(
+            'Model/ProductValue.php',
+            $this->namespace . '\\Model',
+            $productValueClass->getNode()
         );
     }
 

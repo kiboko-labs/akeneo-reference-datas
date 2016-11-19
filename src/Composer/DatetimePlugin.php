@@ -1,6 +1,6 @@
 <?php
 
-namespace Kiboko\AkeneoProductValuesPackage\Datetime\Composer;
+namespace Kiboko\Component\AkeneoProductValuesPackage\Composer;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
@@ -22,12 +22,12 @@ class DatetimePlugin implements PluginInterface, Capable
     protected $io;
 
     /**
-     * @var Filesystem
+     * @param Composer $composer
+     * @param IOInterface $io
      */
-    private $filesystem;
-
     public function activate(Composer $composer, IOInterface $io)
     {
+        // NOOP
     }
 
     /**

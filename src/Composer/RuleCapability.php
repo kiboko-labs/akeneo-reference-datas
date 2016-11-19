@@ -1,10 +1,10 @@
 <?php
 
-namespace Kiboko\AkeneoProductValuesPackage\Datetime\Composer;
+namespace Kiboko\Component\AkeneoProductValuesPackage\Composer;
 
 use Composer\Composer;
-use Kiboko\AkeneoProductValuesPackage\Datetime\Builder\DatetimeMultipleRule;
-use Kiboko\AkeneoProductValuesPackage\Datetime\Builder\DatetimeSingleRule;
+use Kiboko\Component\AkeneoProductValuesPackage\Builder\DatetimeMultipleRule;
+use Kiboko\Component\AkeneoProductValuesPackage\Builder\DatetimeSingleRule;
 use Kiboko\Component\AkeneoProductValues\Composer\RuleCapability as RuleCapabilityInterface;
 
 class RuleCapability implements RuleCapabilityInterface

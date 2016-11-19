@@ -1,6 +1,6 @@
 <?php
 
-namespace Kiboko\AkeneoProductValuesPackage\Datetime\Builder;
+namespace Kiboko\Component\AkeneoProductValuesPackage\Builder;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
@@ -50,6 +50,11 @@ class DatetimeSingleRule implements RuleInterface
     private $class;
 
     /**
+     * @var string
+     */
+    private $fieldName;
+
+    /**
      * DatetimeRule constructor.
      * @param string $root
      * @param string $bundle
@@ -74,13 +79,29 @@ class DatetimeSingleRule implements RuleInterface
     }
 
     /**
+     * @return string
+     */
+    public function getFieldName()
+    {
+        return $this->fieldName;
+    }
+
+    /**
+     * @param string $fieldName
+     */
+    public function setFieldName($fieldName)
+    {
+        $this->fieldName = $fieldName;
+    }
+
+    /**
      * @param IOInterface $io
      * @param Composer $composer
      * @return bool
      */
     public function interact(IOInterface $io, Composer $composer)
     {
-        $fieldName = $io->askAndValidate(
+        $this->fieldName = $io->askAndValidate(
             [
                 'Please enter the field name'
             ],
@@ -96,9 +117,9 @@ class DatetimeSingleRule implements RuleInterface
                 sprintf(
                     'You are about to to add a single reference data of type "%s" in the "%s" field of your Akeneo ProductValue class',
                     $this->namespace === null ? $this->class : ($this->namespace  .'\\'. $this->class),
-                    $fieldName
+                    $this->fieldName
                 ),
-                'Are you sure ?'
+                'Are you sure ? [<info>Y</info>/<info>n</info>]'
             ]
         );
     }
@@ -108,17 +129,17 @@ class DatetimeSingleRule implements RuleInterface
         $productValueClass = new ProductValueCodeGenerator('ProductValue', $this->namespace . '\\Model');
 
         $productValueClass->addInternalField(
-            (new DoctrineEntityScalarFieldCodeGenerator('created', 'DateTimeInterface', [
+            (new DoctrineEntityScalarFieldCodeGenerator($this->getFieldName(), 'DateTimeInterface', [
                 new DoctrineColumnAnnotationGenerator('datetime'),
             ]))
         );
 
         $productValueClass->addMethod(
-            (new DoctrineEntityScalarFieldGetMethodCodeGenerator('created', 'DateTimeInterface'))
+            (new DoctrineEntityScalarFieldGetMethodCodeGenerator($this->getFieldName(), 'DateTimeInterface'))
         );
 
         $productValueClass->addMethod(
-            (new DoctrineEntityScalarFieldSetMethodCodeGenerator('created', 'DateTimeInterface'))
+            (new DoctrineEntityScalarFieldSetMethodCodeGenerator($this->getFieldName(), 'DateTimeInterface'))
         );
 
         $productValueClass->addUseStatement('DateTimeInterface');
@@ -132,7 +153,7 @@ class DatetimeSingleRule implements RuleInterface
 
     public function getName()
     {
-        return 'dateteime.single';
+        return 'datetime.single';
     }
 
     public function getReferenceClass()

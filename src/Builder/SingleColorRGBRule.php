@@ -148,12 +148,12 @@ class SingleColorRGBRule implements RuleInterface
         $visitor->appendPropertyCodeGenerator(
             new DoctrineEntityReferenceFieldCodeGenerator(
                 $this->getFieldName(),
-                'Color',
+                'ColorRGB',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model',
                 [
                     new DoctrineManyToOneAnnotationGenerator(
                         [
-                            'targetEntity' => 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model\\Color'
+                            'targetEntity' => 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model\\ColorRGB'
                         ]
                     ),
                     new DoctrineJoinColumnAnnotationGenerator(
@@ -169,7 +169,7 @@ class SingleColorRGBRule implements RuleInterface
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldGetMethodCodeGenerator(
                 $this->getFieldName(),
-                'Color',
+                'ColorRGB',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
             )
         );
@@ -177,7 +177,7 @@ class SingleColorRGBRule implements RuleInterface
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldSetMethodCodeGenerator(
                 $this->getFieldName(),
-                'Color',
+                'ColorRGB',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
             )
         );

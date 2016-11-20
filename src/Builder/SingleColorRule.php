@@ -112,7 +112,13 @@ class SingleColorRule implements RuleInterface
         if ($this->fieldName === null) {
             $fieldNameQuestion = new Question('Please enter the field name: ', $this->defaultField);
             $fieldNameQuestion->setValidator(function ($value) {
-                return preg_match('/[a-z][A-Za-z0-9]*/', $value);
+                if (!preg_match('/^[a-z][A-Za-z0-9]*$/', $value)) {
+                    throw new \RuntimeException(
+                        'The field name should contain only alphanumeric characters and start with a lowercase letter.'
+                    );
+                }
+
+                return $value;
             })->setMaxAttempts(2);
 
             $this->fieldName = $helper->ask($input, $output, $fieldNameQuestion);

@@ -3,8 +3,8 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Builder;
 
 use Composer\Composer;
-use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineJoinColumnAnnotationGenerator;
-use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineManyToOneAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\Doctrine\DoctrineJoinColumnAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\Doctrine\DoctrineManyToOneAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
 use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;

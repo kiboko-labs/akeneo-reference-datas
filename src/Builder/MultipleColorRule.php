@@ -3,7 +3,9 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Builder;
 
 use Composer\Composer;
-use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineColumnAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineJoinColumnAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineJoinTableAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineManyToManyAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
 use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;
@@ -60,6 +62,11 @@ class MultipleColorRule implements RuleInterface
     private $fieldName;
 
     /**
+     * @var string
+     */
+    private $foreignKey;
+
+    /**
      * DatetimeRule constructor.
      * @param string $root
      * @param string $bundle
@@ -97,6 +104,22 @@ class MultipleColorRule implements RuleInterface
     public function setFieldName($fieldName)
     {
         $this->fieldName = $fieldName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getForeignKey()
+    {
+        return $this->foreignKey;
+    }
+
+    /**
+     * @param string $foreignKey
+     */
+    public function setForeignKey($foreignKey)
+    {
+        $this->foreignKey = $foreignKey;
     }
 
     /**
@@ -149,7 +172,35 @@ class MultipleColorRule implements RuleInterface
                 'Color',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model',
                 [
-                    new DoctrineColumnAnnotationGenerator('datetime'),
+                    new DoctrineManyToManyAnnotationGenerator(
+                        [
+                            'targetEntity' => 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model\\Color'
+                        ]
+                    ),
+                    new DoctrineJoinTableAnnotationGenerator(
+                        [
+                            'name' => $this->fieldName,
+                            'joinColumns' => [
+                                new DoctrineJoinColumnAnnotationGenerator(
+                                    [
+                                        'name' => 'value_id',
+                                        'referencedColumnName' => 'id',
+                                        'nullable' => true,
+                                        'onDelete' => 'CASCADE'
+                                    ]
+                                ),
+                            ],
+                            'inverseJoinColumns' => [
+                                new DoctrineJoinColumnAnnotationGenerator(
+                                    [
+                                        'name' => $this->fieldName,
+                                        'referencedColumnName' => $this->foreignKey,
+                                        'nullable' => false,
+                                    ]
+                                ),
+                            ],
+                        ]
+                    ),
                 ]
             )
         );
@@ -178,11 +229,17 @@ class MultipleColorRule implements RuleInterface
         );
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'color.multiple';
     }
 
+    /**
+     * @return string
+     */
     public function getReferenceClass()
     {
         return \DateTimeInterface::class;

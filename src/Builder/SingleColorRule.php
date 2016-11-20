@@ -3,7 +3,8 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Builder;
 
 use Composer\Composer;
-use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineColumnAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineJoinColumnAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineManyToOneAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
 use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;
@@ -60,6 +61,11 @@ class SingleColorRule implements RuleInterface
     private $fieldName;
 
     /**
+     * @var string
+     */
+    private $foreignKey;
+
+    /**
      * DatetimeRule constructor.
      * @param string $root
      * @param string $bundle
@@ -97,6 +103,22 @@ class SingleColorRule implements RuleInterface
     public function setFieldName($fieldName)
     {
         $this->fieldName = $fieldName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getForeignKey()
+    {
+        return $this->foreignKey;
+    }
+
+    /**
+     * @param string $foreignKey
+     */
+    public function setForeignKey($foreignKey)
+    {
+        $this->foreignKey = $foreignKey;
     }
 
     /**
@@ -149,7 +171,17 @@ class SingleColorRule implements RuleInterface
                 'Color',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model',
                 [
-                    new DoctrineColumnAnnotationGenerator('datetime'),
+                    new DoctrineManyToOneAnnotationGenerator(
+                        [
+                            'targetEntity' => 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model\\Color'
+                        ]
+                    ),
+                    new DoctrineJoinColumnAnnotationGenerator(
+                        [
+                            'name' => $this->fieldName,
+                            'referencedColumnName' => $this->foreignKey
+                        ]
+                    ),
                 ]
             )
         );
@@ -178,11 +210,17 @@ class SingleColorRule implements RuleInterface
         );
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'color.single';
     }
 
+    /**
+     * @return string
+     */
     public function getReferenceClass()
     {
         return \DateTimeInterface::class;

@@ -3,6 +3,7 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Builder;
 
 use Composer\Composer;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\AnnotationGeneratorList;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineJoinColumnAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineJoinTableAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineManyToManyAnnotationGenerator;
@@ -166,25 +167,29 @@ class ManyToManyColorRGBRule implements RuleInterface
                     new DoctrineJoinTableAnnotationGenerator(
                         [
                             'name' => $this->fieldName,
-                            'joinColumns' => [
-                                new DoctrineJoinColumnAnnotationGenerator(
-                                    [
-                                        'name' => 'value_id',
-                                        'referencedColumnName' => 'id',
-                                        'nullable' => true,
-                                        'onDelete' => 'CASCADE'
-                                    ]
-                                ),
-                            ],
-                            'inverseJoinColumns' => [
-                                new DoctrineJoinColumnAnnotationGenerator(
-                                    [
-                                        'name' => $this->fieldName,
-                                        'referencedColumnName' => 'id',
-                                        'nullable' => false,
-                                    ]
-                                ),
-                            ],
+                            'joinColumns' => new AnnotationGeneratorList(
+                                [
+                                    new DoctrineJoinColumnAnnotationGenerator(
+                                        [
+                                            'name' => 'value_id',
+                                            'referencedColumnName' => 'id',
+                                            'nullable' => true,
+                                            'onDelete' => 'CASCADE'
+                                        ]
+                                    ),
+                                ]
+                            ),
+                            'inverseJoinColumns' => new AnnotationGeneratorList(
+                                [
+                                    new DoctrineJoinColumnAnnotationGenerator(
+                                        [
+                                            'name' => $this->fieldName,
+                                            'referencedColumnName' => 'id',
+                                            'nullable' => false,
+                                        ]
+                                    ),
+                                ]
+                            ),
                         ]
                     ),
                 ]

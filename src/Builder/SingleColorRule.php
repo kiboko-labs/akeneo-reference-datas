@@ -147,7 +147,7 @@ class SingleColorRule implements RuleInterface
             $this->fieldName = $helper->ask($input, $output, $fieldNameQuestion);
         }
 
-        if ($this->fieldName === null) {
+        if ($this->foreignKey === null) {
             $fieldNameQuestion = new Question('Please enter the foreign ID field name: ', $this->defaultField);
             $fieldNameQuestion->setValidator(function ($value) {
                 if (!preg_match('/^[a-z][A-Za-z0-9]*$/', $value)) {

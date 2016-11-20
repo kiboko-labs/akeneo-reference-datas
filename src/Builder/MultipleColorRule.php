@@ -13,6 +13,7 @@ use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEn
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldSetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\Visitor\CodeGeneratorApplierVisitor;
+use Kiboko\Component\AkeneoProductValuesPackage\Model\Color;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -242,6 +243,6 @@ class MultipleColorRule implements RuleInterface
      */
     public function getReferenceClass()
     {
-        return \DateTimeInterface::class;
+        return Color::class;
     }
 }

@@ -115,7 +115,7 @@ class SingleColorRule implements RuleInterface
                 return preg_match('/[a-z][A-Za-z0-9]*/', $value);
             })->setMaxAttempts(2);
 
-            $helper->ask($input, $output, $fieldNameQuestion);
+            $this->fieldName = $helper->ask($input, $output, $fieldNameQuestion);
         }
 
         $confirmation = new ConfirmationQuestion(sprintf(

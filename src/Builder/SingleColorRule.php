@@ -109,7 +109,7 @@ class SingleColorRule implements RuleInterface
     {
         $helper = new QuestionHelper();
 
-        if ($this->fieldName !== null) {
+        if ($this->fieldName === null) {
             $fieldNameQuestion = new Question('Please enter the field name: ', $this->defaultField);
             $fieldNameQuestion->setValidator(function ($value) {
                 return preg_match('/[a-z][A-Za-z0-9]*/', $value);

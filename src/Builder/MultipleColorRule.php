@@ -148,6 +148,21 @@ class MultipleColorRule implements RuleInterface
             $this->fieldName = $helper->ask($input, $output, $fieldNameQuestion);
         }
 
+        if ($this->fieldName === null) {
+            $fieldNameQuestion = new Question('Please enter the foreign ID field name: ', $this->defaultField);
+            $fieldNameQuestion->setValidator(function ($value) {
+                if (!preg_match('/^[a-z][A-Za-z0-9]*$/', $value)) {
+                    throw new \RuntimeException(
+                        'The field name should contain only alphanumeric characters and start with a lowercase letter.'
+                    );
+                }
+
+                return $value;
+            })->setMaxAttempts(2);
+
+            $this->foreignKey = $helper->ask($input, $output, $fieldNameQuestion);
+        }
+
         $confirmation = new ConfirmationQuestion(sprintf(
             'You are about to to add a single reference data of type "%s" in the "%s" field of your Akeneo ProductValue class [<info>yes</info>]',
             $this->namespace === null ? $this->class : ($this->namespace  .'\\'. $this->class),

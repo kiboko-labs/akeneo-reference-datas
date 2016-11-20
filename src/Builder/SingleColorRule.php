@@ -110,15 +110,17 @@ class SingleColorRule implements RuleInterface
     {
         $helper = new QuestionHelper();
 
-        $fieldNameQuestion = new Question('Please enter the field name', $this->defaultField);
-        $fieldNameQuestion->setValidator(function ($value) {
-            return preg_match('/[a-z][A-Za-z0-9]*/', $value);
-        })->setMaxAttempts(2);
+        if ($this->fieldName !== null) {
+            $fieldNameQuestion = new Question('Please enter the field name: ', $this->defaultField);
+            $fieldNameQuestion->setValidator(function ($value) {
+                return preg_match('/[a-z][A-Za-z0-9]*/', $value);
+            })->setMaxAttempts(2);
 
-        $helper->ask($input, $output, $fieldNameQuestion);
+            $helper->ask($input, $output, $fieldNameQuestion);
+        }
 
         $confirmation = new ConfirmationQuestion(sprintf(
-            'You are about to to add a single reference data of type "%s" in the "%s" field of your Akeneo ProductValue class',
+            'You are about to to add a single reference data of type "%s" in the "%s" field of your Akeneo ProductValue class [<info>yes</info>]',
             $this->namespace === null ? $this->class : ($this->namespace  .'\\'. $this->class),
             $this->fieldName
         ));

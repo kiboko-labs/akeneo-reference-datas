@@ -135,12 +135,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kiboko-labs/akeneo-product-values-management.git",
-                "reference": "a751eb9a97bb0c6914d65949b9646a8d26e1acdd"
+                "reference": "38ebef9775ef2dfb7e0047e5bc1f629d9e460c1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/a751eb9a97bb0c6914d65949b9646a8d26e1acdd",
-                "reference": "a751eb9a97bb0c6914d65949b9646a8d26e1acdd",
+                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/38ebef9775ef2dfb7e0047e5bc1f629d9e460c1d",
+                "reference": "38ebef9775ef2dfb7e0047e5bc1f629d9e460c1d",
                 "shasum": ""
             },
             "require": {
@@ -176,7 +176,7 @@
                 }
             ],
             "description": "Generate your product value class",
-            "time": "2016-11-19 20:00:30"
+            "time": "2016-11-20 13:23:23"
         },
         {
             "name": "league/flysystem",
@@ -1055,12 +1055,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "3cb2b5ed69642d29543e823cae185ff2a63899bd"
+                "reference": "2de71c462f2a33db9eaf340196117f76c71e9dc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/3cb2b5ed69642d29543e823cae185ff2a63899bd",
-                "reference": "3cb2b5ed69642d29543e823cae185ff2a63899bd",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/2de71c462f2a33db9eaf340196117f76c71e9dc5",
+                "reference": "2de71c462f2a33db9eaf340196117f76c71e9dc5",
                 "shasum": ""
             },
             "require": {
@@ -1069,7 +1069,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -1096,7 +1096,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-10-18 04:30:21"
+            "time": "2016-11-19 20:35:20"
         },
         {
             "name": "symfony/finder",
@@ -1104,12 +1104,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "4263e35a1e342a0f195c9349c0dee38148f8a14f"
+                "reference": "ed30bd4b8a1457c910cf650982e1ca3c1f946d65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/4263e35a1e342a0f195c9349c0dee38148f8a14f",
-                "reference": "4263e35a1e342a0f195c9349c0dee38148f8a14f",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/ed30bd4b8a1457c910cf650982e1ca3c1f946d65",
+                "reference": "ed30bd4b8a1457c910cf650982e1ca3c1f946d65",
                 "shasum": ""
             },
             "require": {
@@ -1118,7 +1118,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -1145,7 +1145,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-03 08:11:03"
+            "time": "2016-11-19 20:35:20"
         },
         {
             "name": "symfony/process",
@@ -1153,12 +1153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "fbaacdfc701a0ad50622eee45cfa2112f0ee144e"
+                "reference": "bb5223b0daac862d40dd1d0d8c16ccaa565716dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/fbaacdfc701a0ad50622eee45cfa2112f0ee144e",
-                "reference": "fbaacdfc701a0ad50622eee45cfa2112f0ee144e",
+                "url": "https://api.github.com/repos/symfony/process/zipball/bb5223b0daac862d40dd1d0d8c16ccaa565716dc",
+                "reference": "bb5223b0daac862d40dd1d0d8c16ccaa565716dc",
                 "shasum": ""
             },
             "require": {
@@ -1167,7 +1167,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -1194,7 +1194,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-10-01 14:21:27"
+            "time": "2016-11-19 20:35:20"
         }
     ],
     "aliases": [],

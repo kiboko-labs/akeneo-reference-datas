@@ -164,19 +164,15 @@ class MultipleColorRule implements RuleInterface
             )
         );
 
+        $builder->ensureClassExists(
+            $this->namespace.'\\Entity\\ProductValue',
+            new ProductValueCodeGenerator('ProductValue', $this->namespace.'\\Entity')
+        );
+
         $builder->visitClassDefinition(
-            $this->namespace . '\\Model\\ProductValue',
+            $this->namespace . '\\Entity\\ProductValue',
             [
                 $visitor
-            ]
-        );
-        $productValueClass = new ProductValueCodeGenerator('ProductValue', $this->namespace . '\\Model');
-
-        $builder->mergeClassDefinition(
-            'Model/ProductValue.php',
-            $this->namespace . '\\Model',
-            [
-                $productValueClass->getNode()
             ]
         );
     }

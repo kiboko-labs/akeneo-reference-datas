@@ -13,14 +13,14 @@ use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEn
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldSetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\Visitor\CodeGeneratorApplierVisitor;
-use Kiboko\Component\AkeneoProductValuesPackage\Model\Color;
+use Kiboko\Component\AkeneoProductValuesPackage\Model\ColorRGB;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
-class MultipleColorRule implements RuleInterface
+class MultipleColorRGBRule implements RuleInterface
 {
     /**
      * @var string
@@ -63,11 +63,6 @@ class MultipleColorRule implements RuleInterface
     private $fieldName;
 
     /**
-     * @var string
-     */
-    private $foreignKey;
-
-    /**
      * DatetimeRule constructor.
      * @param string $root
      * @param string $bundle
@@ -108,22 +103,6 @@ class MultipleColorRule implements RuleInterface
     }
 
     /**
-     * @return string
-     */
-    public function getForeignKey()
-    {
-        return $this->foreignKey;
-    }
-
-    /**
-     * @param string $foreignKey
-     */
-    public function setForeignKey($foreignKey)
-    {
-        $this->foreignKey = $foreignKey;
-    }
-
-    /**
      * @param InputInterface $input
      * @param OutputInterface $output
      * @param Composer $composer
@@ -146,21 +125,6 @@ class MultipleColorRule implements RuleInterface
             })->setMaxAttempts(2);
 
             $this->fieldName = $helper->ask($input, $output, $fieldNameQuestion);
-        }
-
-        if ($this->foreignKey === null) {
-            $fieldNameQuestion = new Question('Please enter the foreign ID field name: ', $this->defaultField);
-            $fieldNameQuestion->setValidator(function ($value) {
-                if (!preg_match('/^[a-z][A-Za-z0-9]*$/', $value)) {
-                    throw new \RuntimeException(
-                        'The field name should contain only alphanumeric characters and start with a lowercase letter.'
-                    );
-                }
-
-                return $value;
-            })->setMaxAttempts(2);
-
-            $this->foreignKey = $helper->ask($input, $output, $fieldNameQuestion);
         }
 
         $confirmation = new ConfirmationQuestion(sprintf(
@@ -210,7 +174,7 @@ class MultipleColorRule implements RuleInterface
                                 new DoctrineJoinColumnAnnotationGenerator(
                                     [
                                         'name' => $this->fieldName,
-                                        'referencedColumnName' => $this->foreignKey,
+                                        'referencedColumnName' => 'id',
                                         'nullable' => false,
                                     ]
                                 ),
@@ -250,7 +214,7 @@ class MultipleColorRule implements RuleInterface
      */
     public function getName()
     {
-        return 'color.multiple';
+        return 'color.rgb.multiple';
     }
 
     /**
@@ -258,6 +222,6 @@ class MultipleColorRule implements RuleInterface
      */
     public function getReferenceClass()
     {
-        return Color::class;
+        return ColorRGB::class;
     }
 }

@@ -4,7 +4,8 @@ namespace Kiboko\Component\AkeneoProductValuesPackage\Builder;
 
 use Composer\Composer;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineJoinColumnAnnotationGenerator;
-use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineManyToOneAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineJoinTableAnnotationGenerator;
+use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineManyToManyAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
 use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;
@@ -19,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
-class SingleColorRGBRule implements RuleInterface
+class ManyToManyColorRGBRule implements RuleInterface
 {
     /**
      * @var string
@@ -133,7 +134,7 @@ class SingleColorRGBRule implements RuleInterface
         }
 
         $confirmation = new ConfirmationQuestion(sprintf(
-            'You are about to to add a single reference data of type "%s" in the "%s" field of your Akeneo ProductValue class [<info>yes</info>]',
+            'You are about to to add a many-to-many reference data of type "%s" in the "%s" field of your Akeneo ProductValue class [<info>yes</info>]',
             $this->namespace === null ? $this->class : ($this->namespace  .'\\'. $this->class),
             $this->fieldName
         ));
@@ -157,15 +158,33 @@ class SingleColorRGBRule implements RuleInterface
                 'ColorRGB',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model',
                 [
-                    new DoctrineManyToOneAnnotationGenerator(
+                    new DoctrineManyToManyAnnotationGenerator(
                         [
                             'targetEntity' => 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model\\ColorRGB'
                         ]
                     ),
-                    new DoctrineJoinColumnAnnotationGenerator(
+                    new DoctrineJoinTableAnnotationGenerator(
                         [
                             'name' => $this->fieldName,
-                            'referencedColumnName' => 'id'
+                            'joinColumns' => [
+                                new DoctrineJoinColumnAnnotationGenerator(
+                                    [
+                                        'name' => 'value_id',
+                                        'referencedColumnName' => 'id',
+                                        'nullable' => true,
+                                        'onDelete' => 'CASCADE'
+                                    ]
+                                ),
+                            ],
+                            'inverseJoinColumns' => [
+                                new DoctrineJoinColumnAnnotationGenerator(
+                                    [
+                                        'name' => $this->fieldName,
+                                        'referencedColumnName' => 'id',
+                                        'nullable' => false,
+                                    ]
+                                ),
+                            ],
                         ]
                     ),
                 ]
@@ -201,7 +220,7 @@ class SingleColorRGBRule implements RuleInterface
      */
     public function getName()
     {
-        return 'color.rgb.single';
+        return 'color.rgb.many-to-many';
     }
 
     /**

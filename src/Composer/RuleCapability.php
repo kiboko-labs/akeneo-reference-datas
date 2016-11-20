@@ -3,8 +3,8 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Composer;
 
 use Composer\Composer;
-use Kiboko\Component\AkeneoProductValuesPackage\Builder\MultipleColorRGBRule;
-use Kiboko\Component\AkeneoProductValuesPackage\Builder\SingleColorRGBRule;
+use Kiboko\Component\AkeneoProductValuesPackage\Builder\ManyToManyColorRGBRule;
+use Kiboko\Component\AkeneoProductValuesPackage\Builder\ManyToOneColorRGBRule;
 use Kiboko\Component\AkeneoProductValues\Composer\RuleCapability as RuleCapabilityInterface;
 
 class RuleCapability implements RuleCapabilityInterface
@@ -16,8 +16,8 @@ class RuleCapability implements RuleCapabilityInterface
         $bundle = $composer->getConfig()->get('akeneo-appbundle-bundle-name') ?: 'AppBundle';
 
         return [
-            'color.rgb.single'   => new SingleColorRGBRule($root, $bundle, $vendor),
-            'color.rgb.multiple' => new MultipleColorRGBRule($root, $bundle, $vendor),
+            'color.rgb.many-to-one'   => new ManyToOneColorRGBRule($root, $bundle, $vendor),
+            'color.rgb.many-to-many' => new ManyToManyColorRGBRule($root, $bundle, $vendor),
         ];
     }
 }

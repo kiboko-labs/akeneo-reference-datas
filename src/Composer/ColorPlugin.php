@@ -7,9 +7,8 @@ use Composer\IO\IOInterface;
 use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
 use Kiboko\Component\AkeneoProductValues\Composer\RuleCapability as RuleCapabilityInterface;
-use League\Flysystem\Filesystem;
 
-class DatetimePlugin implements PluginInterface, Capable
+class ColorPlugin implements PluginInterface, Capable
 {
     /**
      * @var Composer

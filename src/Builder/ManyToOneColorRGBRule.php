@@ -144,8 +144,8 @@ class ManyToOneColorRGBRule implements RuleInterface
     public function applyTo(BundleBuilder $builder)
     {
         $builder->ensureClassExists(
-            $this->namespace.'\\Entity\\ProductValue',
             'Entity/ProductValue.php',
+            $this->namespace.'\\Entity\\ProductValue',
             new ProductValueCodeGenerator('ProductValue', $this->namespace.'\\Entity')
         );
 

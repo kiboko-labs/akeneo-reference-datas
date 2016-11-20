@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "92def924fe9ae87fcd6e6598cc0f0ed8",
-    "content-hash": "78cfac4aaf96d7fe0d768085b0535fd5",
+    "hash": "e8134be1999c2b1fd4adc2fc8b7751e8",
+    "content-hash": "9dd66dfbb7b977d4de344b9afa4066df",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -135,12 +135,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kiboko-labs/akeneo-product-values-management.git",
-                "reference": "3362ddf2bbae0fa5a31d73ee6836e477ef6cffd1"
+                "reference": "7895f1e2ef848f3c410bef11f3609373d19a680d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/3362ddf2bbae0fa5a31d73ee6836e477ef6cffd1",
-                "reference": "3362ddf2bbae0fa5a31d73ee6836e477ef6cffd1",
+                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/7895f1e2ef848f3c410bef11f3609373d19a680d",
+                "reference": "7895f1e2ef848f3c410bef11f3609373d19a680d",
                 "shasum": ""
             },
             "require": {
@@ -176,7 +176,7 @@
                 }
             ],
             "description": "Generate your product value class",
-            "time": "2016-11-20 17:12:23"
+            "time": "2016-11-20 17:47:10"
         },
         {
             "name": "league/flysystem",

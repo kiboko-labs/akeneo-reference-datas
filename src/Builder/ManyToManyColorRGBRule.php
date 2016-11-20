@@ -167,29 +167,25 @@ class ManyToManyColorRGBRule implements RuleInterface
                     new DoctrineJoinTableAnnotationGenerator(
                         [
                             'name' => $this->fieldName,
-                            'joinColumns' => new AnnotationGeneratorList(
-                                [
-                                    new DoctrineJoinColumnAnnotationGenerator(
-                                        [
-                                            'name' => 'value_id',
-                                            'referencedColumnName' => 'id',
-                                            'nullable' => true,
-                                            'onDelete' => 'CASCADE'
-                                        ]
-                                    ),
-                                ]
-                            ),
-                            'inverseJoinColumns' => new AnnotationGeneratorList(
-                                [
-                                    new DoctrineJoinColumnAnnotationGenerator(
-                                        [
-                                            'name' => $this->fieldName,
-                                            'referencedColumnName' => 'id',
-                                            'nullable' => false,
-                                        ]
-                                    ),
-                                ]
-                            ),
+                            'joinColumns' => [
+                                new DoctrineJoinColumnAnnotationGenerator(
+                                    [
+                                        'name' => 'value_id',
+                                        'referencedColumnName' => 'id',
+                                        'nullable' => true,
+                                        'onDelete' => 'CASCADE'
+                                    ]
+                                ),
+                            ],
+                            'inverseJoinColumns' => [
+                                new DoctrineJoinColumnAnnotationGenerator(
+                                    [
+                                        'name' => $this->fieldName,
+                                        'referencedColumnName' => 'id',
+                                        'nullable' => false,
+                                    ]
+                                ),
+                            ],
                         ]
                     ),
                 ]

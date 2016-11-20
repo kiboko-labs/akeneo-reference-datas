@@ -69,7 +69,7 @@ class MultipleColorRGBRule implements RuleInterface
      * @param string|null $vendor
      * @param string $defaultField
      */
-    public function __construct($root, $bundle, $vendor = null, $defaultField = 'datetime')
+    public function __construct($root, $bundle, $vendor = null, $defaultField = 'colorRgb')
     {
         $this->root = $root;
         $this->vendor = $vendor;
@@ -113,7 +113,13 @@ class MultipleColorRGBRule implements RuleInterface
         $helper = new QuestionHelper();
 
         if ($this->fieldName === null) {
-            $fieldNameQuestion = new Question('Please enter the field name: ', $this->defaultField);
+            $fieldNameQuestion = new Question(
+                sprintf(
+                    'Please enter the field name: [<info>%s</info>]',
+                    $this->defaultField
+                ),
+                $this->defaultField
+            );
             $fieldNameQuestion->setValidator(function ($value) {
                 if (!preg_match('/^[a-z][A-Za-z0-9]*$/', $value)) {
                     throw new \RuntimeException(

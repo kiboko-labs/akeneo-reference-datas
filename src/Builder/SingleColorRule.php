@@ -135,6 +135,12 @@ class SingleColorRule implements RuleInterface
 
     public function applyTo(BundleBuilder $builder)
     {
+        $builder->ensureClassExists(
+            $this->namespace.'\\Entity\\ProductValue',
+            'Entity/ProductValue.php',
+            new ProductValueCodeGenerator('ProductValue', $this->namespace.'\\Entity')
+        );
+
         $visitor = new CodeGeneratorApplierVisitor();
 
         $visitor->appendPropertyCodeGenerator(
@@ -162,12 +168,6 @@ class SingleColorRule implements RuleInterface
                 'Color',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
             )
-        );
-
-        $builder->ensureClassExists(
-            $this->namespace.'\\Entity\\ProductValue',
-            'Entity/ProductValue.php',
-            new ProductValueCodeGenerator('ProductValue', $this->namespace.'\\Entity')
         );
 
         $builder->visitClassDefinition(

@@ -149,12 +149,12 @@ class MultipleColorRGBRule implements RuleInterface
         $visitor->appendPropertyCodeGenerator(
             new DoctrineEntityReferenceFieldCodeGenerator(
                 $this->getFieldName(),
-                'Color',
+                'ColorRGB',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model',
                 [
                     new DoctrineManyToManyAnnotationGenerator(
                         [
-                            'targetEntity' => 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model\\Color'
+                            'targetEntity' => 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model\\ColorRGB'
                         ]
                     ),
                     new DoctrineJoinTableAnnotationGenerator(
@@ -188,7 +188,7 @@ class MultipleColorRGBRule implements RuleInterface
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldGetMethodCodeGenerator(
                 $this->getFieldName(),
-                'Color',
+                'ColorRGB',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
             )
         );
@@ -196,7 +196,7 @@ class MultipleColorRGBRule implements RuleInterface
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldSetMethodCodeGenerator(
                 $this->getFieldName(),
-                'Color',
+                'ColorRGB',
                 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
             )
         );

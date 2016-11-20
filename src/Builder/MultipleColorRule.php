@@ -3,7 +3,6 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Builder;
 
 use Composer\Composer;
-use Composer\IO\IOInterface;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\DoctrineColumnAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
 use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;

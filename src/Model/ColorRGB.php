@@ -1,10 +1,8 @@
 <?php
 
-
 namespace Kiboko\Component\AkeneoProductValuesPackage\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Pim\Component\ReferenceData\Model\AbstractReferenceData;
 
 /**
  * Class ColorRGB
@@ -12,7 +10,7 @@ use Pim\Component\ReferenceData\Model\AbstractReferenceData;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
-class ColorRGB extends AbstractReferenceData
+class ColorRGB extends Color
 {
     /**
      * @param int
@@ -22,12 +20,6 @@ class ColorRGB extends AbstractReferenceData
      * @ORM\GeneratedValue()
      */
     private $id;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $name;
 
     /**
      * @var int
@@ -64,22 +56,6 @@ class ColorRGB extends AbstractReferenceData
     }
 
     /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
      * @return int
      */
     public function getRed()
@@ -92,7 +68,7 @@ class ColorRGB extends AbstractReferenceData
      */
     public function setRed($red)
     {
-        $this->red = $red;
+        $this->red = max(0, $red % 256);
     }
 
     /**
@@ -108,7 +84,7 @@ class ColorRGB extends AbstractReferenceData
      */
     public function setGreen($green)
     {
-        $this->green = $green;
+        $this->green = max(0, $green % 256);
     }
 
     /**
@@ -124,7 +100,7 @@ class ColorRGB extends AbstractReferenceData
      */
     public function setBlue($blue)
     {
-        $this->blue = $blue;
+        $this->blue = max(0, $blue % 256);
     }
 
     /**
@@ -132,41 +108,7 @@ class ColorRGB extends AbstractReferenceData
      */
     public function getType()
     {
-        return 'colorrgb';
-    }
-
-    /**
-     * @return string
-     */
-    public function asHexCode()
-    {
-        return sprintf('#%X%X%X', $this->getRed(), $this->getGreen(), $this->getBlue());
-    }
-
-    /**
-     * @param string $hexCode
-     */
-    public function fromHexCode($hexCode)
-    {
-        switch (strlen($hexCode)) {
-            case 6:
-                sscanf($hexCode, '#%2X%2X%2X', $this->red, $this->green, $this->blue);
-                break;
-
-            case 3:
-                sscanf($hexCode, '#%1X%1X%1X', $this->red, $this->green, $this->blue);
-
-                $this->red |= ($this->red << 4);
-                $this->green |= ($this->green << 4);
-                $this->blue |= ($this->blue << 4);
-                break;
-
-            case 2:
-                sscanf($hexCode, '#%2X', $this->blue);
-
-                $this->red = $this->green = $this->blue;
-                break;
-        }
+        return 'color_rgb';
     }
 
     /**

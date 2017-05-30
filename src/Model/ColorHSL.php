@@ -1,11 +1,16 @@
 <?php
 
-
 namespace Kiboko\Component\AkeneoProductValuesPackage\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 
-class ColorHSL
+/**
+ * Class ColorHSL
+ *
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ */
+class ColorHSL extends Color
 {
     /**
      * @param int
@@ -18,9 +23,9 @@ class ColorHSL
 
     /**
      * @var int
-     * @ORM\Column(type="binary", length=4)
+     * @ORM\Column(type="mediumint")
      */
-    private $color;
+    private $hue;
 
     /**
      * @var int
@@ -32,7 +37,7 @@ class ColorHSL
      * @var int
      * @ORM\Column(type="smallint")
      */
-    private $light;
+    private $lightness;
 
     /**
      * @return int
@@ -53,94 +58,68 @@ class ColorHSL
     /**
      * @return int
      */
-    public function getRed()
+    public function getHue()
     {
-        return $this->red;
+        return $this->hue;
     }
 
     /**
-     * @param int $red
+     * @param int $hue
      */
-    public function setRed($red)
+    public function setHue($hue)
     {
-        $this->red = $red;
-    }
-
-    /**
-     * @return int
-     */
-    public function getGreen()
-    {
-        return $this->green;
-    }
-
-    /**
-     * @param int $green
-     */
-    public function setGreen($green)
-    {
-        $this->green = $green;
+        $this->hue = max(0, $hue % 360);
     }
 
     /**
      * @return int
      */
-    public function getBlue()
+    public function getSaturation()
     {
-        return $this->blue;
+        return $this->saturation;
     }
 
     /**
-     * @param int $blue
+     * @param int $saturation
      */
-    public function setBlue($blue)
+    public function setSaturation($saturation)
     {
-        $this->blue = $blue;
+        $this->saturation = max(0, $saturation % 100);
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function asHexCode()
+    public function getLightness()
     {
-        return sprintf('#%X%X%X', $this->getRed(), $this->getGreen(), $this->getBlue());
+        return $this->lightness;
     }
 
     /**
-     * @param string $hexCode
+     * @param int $lightness
      */
-    public function fromHexCode($hexCode)
+    public function setLightness($lightness)
     {
-        switch (strlen($hexCode)) {
-            case 6:
-                sscanf($hexCode, '#%2X%2X%2X', $this->red, $this->green, $this->blue);
-                break;
-
-            case 3:
-                sscanf($hexCode, '#%1X%1X%1X', $this->red, $this->green, $this->blue);
-
-                $this->red |= ($this->red << 4);
-                $this->green |= ($this->green << 4);
-                $this->blue |= ($this->blue << 4);
-                break;
-
-            case 2:
-                sscanf($hexCode, '#%2X', $this->blue);
-
-                $this->red = $this->green = $this->blue;
-                break;
-        }
+        $this->lightness = max(0, $lightness % 100);
     }
 
     /**
-     * @param int $red
-     * @param int $green
-     * @param int $blue
+     * {@inheritdoc}
      */
-    public function set($red, $green, $blue)
+    public function getType()
     {
-        $this->setRed($red);
-        $this->setGreen($green);
-        $this->setBlue($blue);
+        return 'color_hsl';
+    }
+
+    /**
+     * @param int $hue
+     * @param int $saturation
+     * @param int $lightness
+     */
+    public function set($hue, $saturation, $lightness)
+    {
+        $this->setHue($hue);
+        $this->setSaturation($saturation);
+        $this->setLightness($lightness);
     }
 }

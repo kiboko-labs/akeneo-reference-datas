@@ -4,7 +4,7 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use Pim\Component\ReferenceData\Model\AbstractReferenceData;
+use Pim\Bundle\CustomEntityBundle\Entity\AbstractTranslatableCustomEntity;
 
 /**
  * Class ColorRGB
@@ -12,7 +12,7 @@ use Pim\Component\ReferenceData\Model\AbstractReferenceData;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
-class Color extends AbstractReferenceData
+abstract class Color extends AbstractTranslatableCustomEntity implements ColorInterface
 {
     /**
      * @param int
@@ -28,12 +28,6 @@ class Color extends AbstractReferenceData
      * @ORM\Column(type="string")
      */
     private $name;
-
-    /**
-     * @var string
-     * @ORM\Column(type="binary", length=4)
-     */
-    private $color;
 
     /**
      * @return int
@@ -68,21 +62,10 @@ class Color extends AbstractReferenceData
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getColor()
+    public function getTranslationFQCN()
     {
-        return $this->color;
-    }
-
-    /**
-     * @param int $color
-     *
-     * @return $this
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-        return $this;
+        return ColorTranslation::class;
     }
 }

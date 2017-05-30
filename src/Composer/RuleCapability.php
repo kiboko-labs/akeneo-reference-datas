@@ -3,8 +3,8 @@
 namespace Kiboko\Component\AkeneoProductValuesPackage\Composer;
 
 use Composer\Composer;
-use Kiboko\Component\AkeneoProductValuesPackage\Builder\ManyToManyColorRule;
-use Kiboko\Component\AkeneoProductValuesPackage\Builder\ManyToOneColorRule;
+use Kiboko\Component\AkeneoProductValuesPackage\Builder\Color\ManyToManyColorRule;
+use Kiboko\Component\AkeneoProductValuesPackage\Builder\Color\ManyToOneColorRule;
 use Kiboko\Component\AkeneoProductValues\Composer\RuleCapability as RuleCapabilityInterface;
 
 class RuleCapability implements RuleCapabilityInterface

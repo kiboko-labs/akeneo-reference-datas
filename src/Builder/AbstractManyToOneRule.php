@@ -107,10 +107,12 @@ abstract class AbstractManyToOneRule implements ManyToOneReferenceRuleInterface
 
         $visitor = new CodeGeneratorApplierVisitor();
 
+        list($className, $namespace) = Helper\ClassName::extractClassAndNamespace($this->getProductValueClass());
         $visitor->appendPropertyCodeGenerator(
             new DoctrineEntityReferenceFieldCodeGenerator(
                 $this->getFieldName(),
-                ...Helper\ClassName::extractClassAndNamespace($this->referenceClass),
+                $className,
+                $namespace,
                 [
                     new DoctrineManyToOneAnnotationGenerator(
                         [

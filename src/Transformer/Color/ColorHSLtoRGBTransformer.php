@@ -2,26 +2,26 @@
 
 namespace Kiboko\Component\AkeneoProductValuesPackage\Transformer\Color;
 
-use Kiboko\Component\AkeneoProductValuesPackage\Model\ColorCMYK;
+use Kiboko\Component\AkeneoProductValuesPackage\Model\ColorHSL;
 use Kiboko\Component\AkeneoProductValuesPackage\Model\ColorRGB;
-use Kiboko\Component\AkeneoProductValuesPackage\Transformer\Color\CompositionTrait\CMYKtoRGBTrait;
+use Kiboko\Component\AkeneoProductValuesPackage\Transformer\Color\CompositionTrait\HSLtoRGBTrait;
 use Kiboko\Component\AkeneoProductValuesPackage\Transformer\TransformerInterface;
 
-class CMYKtoRGB implements TransformerInterface
+class ColorHSLtoRGBTransformer implements TransformerInterface
 {
-    use CMYKtoRGBTrait {
-        transform as private transformCMYKtoRGB;
+    use HSLtoRGBTrait {
+        transform as private transformHSLtoRGB;
     }
 
     /**
-     * @param ColorCMYK $object
+     * @param ColorHSL $object
      * @param string $desiredType
      *
      * @return ColorRGB
      */
     public function transform($object, $desiredType)
     {
-        return $this->transformCMYKtoRGB($object);
+        return $this->transformHSLtoRGB($object);
     }
 
     /**
@@ -32,6 +32,6 @@ class CMYKtoRGB implements TransformerInterface
      */
     public function supportsTransformation($object, $desiredType)
     {
-        return $object instanceof ColorCMYK && $desiredType === ColorRGB::class;
+        return $object instanceof ColorHSL && $desiredType === ColorRGB::class;
     }
 }

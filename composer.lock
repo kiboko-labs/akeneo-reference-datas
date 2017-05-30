@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e8134be1999c2b1fd4adc2fc8b7751e8",
-    "content-hash": "9dd66dfbb7b977d4de344b9afa4066df",
+    "content-hash": "dff9a9797d51b55a8fa6a52bb3649680",
     "packages": [
         {
             "name": "akeneo-labs/custom-entity-bundle",
@@ -217,7 +216,7 @@
                 "source": "https://github.com/akeneo/pim-community-dev/tree/v1.6.4",
                 "issues": "https://github.com/akeneo/pim-community-dev/issues"
             },
-            "time": "2016-10-20 14:39:09"
+            "time": "2016-10-20T14:39:09+00:00"
         },
         {
             "name": "apy/jsfv-bundle",
@@ -287,7 +286,7 @@
                 "symfony",
                 "validation"
             ],
-            "time": "2014-02-26 09:45:40"
+            "time": "2014-02-26T09:45:40+00:00"
         },
         {
             "name": "ass/xmlsecurity",
@@ -347,7 +346,7 @@
                 "signature",
                 "xml"
             ],
-            "time": "2015-05-31 10:10:35"
+            "time": "2015-05-31T10:10:35+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -460,7 +459,7 @@
                 "write",
                 "xlsx"
             ],
-            "time": "2016-07-11 17:03:37"
+            "time": "2016-07-11T17:03:37+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -786,7 +785,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-06-17 12:21:22"
+            "time": "2015-06-17T12:21:22+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -856,7 +855,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-12-31 16:37:02"
+            "time": "2015-12-31T16:37:02+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -1000,7 +999,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2014-05-21 19:28:51"
+            "time": "2014-05-21T19:28:51+00:00"
         },
         {
             "name": "doctrine/data-fixtures",
@@ -1056,7 +1055,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2013-07-10 17:04:07"
+            "time": "2013-07-10T17:04:07+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -1191,7 +1190,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2013-03-25 20:13:59"
+            "time": "2013-03-25T20:13:59+00:00"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
@@ -1251,7 +1250,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2013-09-05 11:23:37"
+            "time": "2013-09-05T11:23:37+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -1309,7 +1308,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2015-09-29 10:07:00"
+            "time": "2015-09-29T10:07:00+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1552,7 +1551,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2016-01-07 21:28:50"
+            "time": "2016-01-07T21:28:50+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -1625,7 +1624,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-12-16 13:45:01"
+            "time": "2014-12-16T13:45:01+00:00"
         },
         {
             "name": "dompdf/dompdf",
@@ -1666,7 +1665,7 @@
             ],
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
-            "time": "2014-03-11 01:59:52"
+            "time": "2014-03-11T01:59:52+00:00"
         },
         {
             "name": "escapestudios/wsse-authentication-bundle",
@@ -1724,7 +1723,7 @@
                 "bundle",
                 "wsse"
             ],
-            "time": "2015-04-10 17:37:02"
+            "time": "2015-04-10T17:37:02+00:00"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -1782,7 +1781,7 @@
                 "javascript",
                 "routing"
             ],
-            "time": "2015-01-23 02:44:26"
+            "time": "2015-01-23T02:44:26+00:00"
         },
         {
             "name": "friendsofsymfony/rest",
@@ -1834,7 +1833,7 @@
                 "rest"
             ],
             "abandoned": true,
-            "time": "2013-03-02 20:35:05"
+            "time": "2013-03-02T20:35:05+00:00"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -1904,7 +1903,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2013-05-06 10:33:17"
+            "time": "2013-05-06T10:33:17+00:00"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1983,7 +1982,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-07-07 08:17:38"
+            "time": "2015-07-07T08:17:38+00:00"
         },
         {
             "name": "imagine/imagine",
@@ -2040,7 +2039,7 @@
                 "image manipulation",
                 "image processing"
             ],
-            "time": "2014-11-11 11:36:02"
+            "time": "2014-11-11T11:36:02+00:00"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2091,7 +2090,7 @@
             "keywords": [
                 "parameters management"
             ],
-            "time": "2015-06-03 08:27:03"
+            "time": "2015-06-03T08:27:03+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2299,7 +2298,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2015-06-16 11:50:24"
+            "time": "2015-06-16T11:50:24+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -2368,7 +2367,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2015-06-23 19:27:08"
+            "time": "2015-06-23T19:27:08+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -2442,17 +2441,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kiboko-labs/akeneo-product-values-management.git",
-                "reference": "522f86c15684aed01789d17673d1de3b3bbed5e7"
+                "reference": "3ceee83cea711c1c2dd75096b9f296490e462bf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/522f86c15684aed01789d17673d1de3b3bbed5e7",
-                "reference": "522f86c15684aed01789d17673d1de3b3bbed5e7",
+                "url": "https://api.github.com/repos/kiboko-labs/akeneo-product-values-management/zipball/3ceee83cea711c1c2dd75096b9f296490e462bf9",
+                "reference": "3ceee83cea711c1c2dd75096b9f296490e462bf9",
                 "shasum": ""
             },
             "require": {
                 "akeneo-labs/custom-entity-bundle": "1.8.*",
-                "akeneo/pim-community-dev": "1.6.4",
+                "akeneo/pim-community-dev": "1.6.*",
                 "composer-plugin-api": "^1.0",
                 "composer/composer": "^1.0",
                 "doctrine/annotations": "^1.2.0",
@@ -2481,7 +2480,7 @@
                 }
             ],
             "description": "Generate your product value class",
-            "time": "2016-11-20 23:41:26"
+            "time": "2017-05-30 21:40:58"
         },
         {
             "name": "knplabs/knp-menu",
@@ -2545,7 +2544,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2014-08-01 09:50:16"
+            "time": "2014-08-01T09:50:16+00:00"
         },
         {
             "name": "knplabs/knp-menu-bundle",
@@ -2599,7 +2598,7 @@
             "keywords": [
                 "menu"
             ],
-            "time": "2014-08-01 09:57:23"
+            "time": "2014-08-01T09:57:23+00:00"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2670,7 +2669,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2014-12-12 05:37:00"
+            "time": "2014-12-12T05:37:00+00:00"
         },
         {
             "name": "leafo/lessphp",
@@ -2711,7 +2710,7 @@
             ],
             "description": "lessphp is a compiler for LESS written in PHP.",
             "homepage": "http://leafo.net/lessphp/",
-            "time": "2014-11-24 18:39:20"
+            "time": "2014-11-24T18:39:20+00:00"
         },
         {
             "name": "league/flysystem",
@@ -2792,7 +2791,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-07-28 20:41:58"
+            "time": "2015-07-28T20:41:58+00:00"
         },
         {
             "name": "league/flysystem-ziparchive",
@@ -2838,7 +2837,7 @@
                 }
             ],
             "description": "Flysystem adapter for ZipArchive's",
-            "time": "2015-04-21 12:14:28"
+            "time": "2015-04-21T12:14:28+00:00"
         },
         {
             "name": "liip/imagine-bundle",
@@ -2913,7 +2912,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2015-06-04 11:44:07"
+            "time": "2015-06-04T11:44:07+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2991,7 +2990,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-04-02 13:12:58"
+            "time": "2016-04-02T13:12:58+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3115,7 +3114,7 @@
                 "abstraction",
                 "filesystem"
             ],
-            "time": "2015-05-08 12:44:48"
+            "time": "2015-05-08T12:44:48+00:00"
         },
         {
             "name": "phenx/php-font-lib",
@@ -3149,7 +3148,7 @@
             ],
             "description": "A library to read, parse, export and make subsets of different types of font files.",
             "homepage": "https://github.com/PhenX/php-font-lib",
-            "time": "2014-02-01 15:22:28"
+            "time": "2014-02-01T15:22:28+00:00"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -3197,7 +3196,7 @@
                 "sequence",
                 "set"
             ],
-            "time": "2015-05-17 12:39:23"
+            "time": "2015-05-17T12:39:23+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -3247,7 +3246,7 @@
                 "php",
                 "type"
             ],
-            "time": "2015-07-25 16:39:46"
+            "time": "2015-07-25T16:39:46+00:00"
         },
         {
             "name": "psr/log",
@@ -3388,7 +3387,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2016-11-14 17:59:58"
+            "time": "2016-11-14T17:59:58+00:00"
         },
         {
             "name": "seld/phar-utils",
@@ -3607,7 +3606,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2014-04-28 14:01:06"
+            "time": "2014-04-28T14:01:06+00:00"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -3651,7 +3650,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "time": "2015-11-07 08:07:40"
+            "time": "2015-11-07T08:07:40+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3767,7 +3766,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-11-25 16:34:50"
+            "time": "2013-11-25T16:34:50+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -3827,7 +3826,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2016-03-13 15:55:56"
+            "time": "2016-03-13T15:55:56+00:00"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -3884,7 +3883,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2014-12-01 17:44:50"
+            "time": "2014-12-01T17:44:50+00:00"
         },
         {
             "name": "symfony/symfony",
@@ -4006,7 +4005,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-07-13 19:27:49"
+            "time": "2015-07-13T19:27:49+00:00"
         },
         {
             "name": "twig/extensions",
@@ -4058,7 +4057,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2014-10-30 14:30:03"
+            "time": "2014-10-30T14:30:03+00:00"
         },
         {
             "name": "twig/twig",
@@ -4216,7 +4215,7 @@
                 }
             ],
             "description": "JSONP callback validator.",
-            "time": "2014-01-20 22:35:06"
+            "time": "2014-01-20T22:35:06+00:00"
         }
     ],
     "packages-dev": [],

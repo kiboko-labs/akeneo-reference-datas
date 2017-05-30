@@ -7,7 +7,7 @@
         "kiboko/akeneo-product-values-management": "dev-master"
     },
     "extra": {
-        "class": "Kiboko\\Component\\AkeneoProductValuesPackage\\Composer\\ColorPlugin"
+        "class": "Kiboko\\Component\\AkeneoProductValuesPackage\\Composer\\AkeneoReferenceDataPlugin"
     },
     "license": "lgpl",
     "authors": [

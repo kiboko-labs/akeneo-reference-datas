@@ -4,24 +4,24 @@ namespace Kiboko\Component\AkeneoProductValuesPackage\Transformer\Color;
 
 use Kiboko\Component\AkeneoProductValuesPackage\Model\ColorCMYK;
 use Kiboko\Component\AkeneoProductValuesPackage\Model\ColorRGB;
-use Kiboko\Component\AkeneoProductValuesPackage\Transformer\Color\CompositionTrait\RGBtoCMYKTrait;
+use Kiboko\Component\AkeneoProductValuesPackage\Transformer\Color\CompositionTrait\CMYKtoRGBTrait;
 use Kiboko\Component\AkeneoProductValuesPackage\Transformer\TransformerInterface;
 
-class RGBtoCMYK implements TransformerInterface
+class ColorCMYKtoRGBTransformer implements TransformerInterface
 {
-    use RGBtoCMYKTrait {
-        transform as private transformRGBtoCMYK;
+    use CMYKtoRGBTrait {
+        transform as private transformCMYKtoRGB;
     }
 
     /**
-     * @param ColorRGB $object
+     * @param ColorCMYK $object
      * @param string $desiredType
      *
-     * @return ColorCMYK
+     * @return ColorRGB
      */
     public function transform($object, $desiredType)
     {
-        return $this->transformRGBtoCMYK($object);
+        return $this->transformCMYKtoRGB($object);
     }
 
     /**
@@ -32,6 +32,6 @@ class RGBtoCMYK implements TransformerInterface
      */
     public function supportsTransformation($object, $desiredType)
     {
-        return $object instanceof ColorRGB && $desiredType === ColorCMYK::class;
+        return $object instanceof ColorCMYK && $desiredType === ColorRGB::class;
     }
 }

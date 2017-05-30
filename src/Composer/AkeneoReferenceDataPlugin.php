@@ -8,7 +8,7 @@ use Composer\Plugin\Capable;
 use Composer\Plugin\PluginInterface;
 use Kiboko\Component\AkeneoProductValues\Composer\RuleCapability as RuleCapabilityInterface;
 
-class ColorPlugin implements PluginInterface, Capable
+class AkeneoReferenceDataPlugin implements PluginInterface, Capable
 {
     /**
      * @var Composer

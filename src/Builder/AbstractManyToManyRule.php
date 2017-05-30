@@ -2,45 +2,25 @@
 
 namespace Kiboko\Component\AkeneoProductValuesPackage\Builder;
 
-use Composer\Composer;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\Doctrine\DoctrineJoinColumnAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\Doctrine\DoctrineJoinTableAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\AnnotationGenerator\Doctrine\DoctrineManyToManyAnnotationGenerator;
 use Kiboko\Component\AkeneoProductValues\Builder\BundleBuilder;
-use Kiboko\Component\AkeneoProductValues\Builder\RuleInterface;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldGetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\DoctrineEntity\DoctrineEntityReferenceFieldSetMethodCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\CodeGenerator\ProductValueCodeGenerator;
 use Kiboko\Component\AkeneoProductValues\Visitor\CodeGeneratorApplierVisitor;
-use Kiboko\Component\AkeneoProductValuesPackage\Model\ColorRGB;
-use Symfony\Component\Console\Helper\QuestionHelper;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Console\Question\Question;
+use Kiboko\Component\AkeneoProductValuesPackage\Helper;
 
-class ManyToManyColorRGBRule implements RuleInterface
+abstract class AbstractManyToManyRule implements ManyToManyReferenceRuleInterface
 {
     /**
+     * Entity type class
+     *
      * @var string
      */
-    private $root;
-
-    /**
-     * @var string
-     */
-    private $bundle;
-
-    /**
-     * @var string
-     */
-    private $vendor;
-
-    /**
-     * @var string
-     */
-    private $defaultField;
+    private $referenceClass;
 
     /**
      * @var string
@@ -53,36 +33,42 @@ class ManyToManyColorRGBRule implements RuleInterface
     private $namespace;
 
     /**
+     * The default field name
+     *
      * @var string
      */
-    private $class;
+    private $defaultField;
 
     /**
+     * The actual field name (after user interaction)
+     *
      * @var string
      */
     private $fieldName;
 
     /**
      * DatetimeRule constructor.
-     * @param string $root
-     * @param string $bundle
-     * @param string|null $vendor
+     *
+     * @param string $bundleName
+     * @param string $referenceClass
+     * @param string|null $vendorName
      * @param string $defaultField
      */
-    public function __construct($root, $bundle, $vendor = null, $defaultField = 'colorRgb')
-    {
-        $this->root = $root;
-        $this->vendor = $vendor;
-        $this->bundle = $bundle;
+    public function __construct(
+        $bundleName,
+        $referenceClass,
+        $vendorName = null,
+        $defaultField = null
+    ) {
+        $this->referenceClass = $referenceClass;
         $this->defaultField = $defaultField;
-        $this->class = \DateTimeInterface::class;
 
-        if ($vendor === '') {
-            $this->namespace = $this->bundle;
-            $this->path = $this->bundle . '/';
+        if ($vendorName === '') {
+            $this->namespace = $bundleName;
+            $this->path = $bundleName . '/';
         } else {
-            $this->namespace = $this->vendor . '\\Bundle\\' . $this->bundle;
-            $this->path = $this->vendor . '/Bundle/' . $this->bundle . '/';
+            $this->namespace = $vendorName . '\\Bundle\\' . $bundleName;
+            $this->path = $vendorName . '/Bundle/' . $bundleName . '/';
         }
     }
 
@@ -103,51 +89,21 @@ class ManyToManyColorRGBRule implements RuleInterface
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @param Composer $composer
-     * @return bool
+     * @return string
      */
-    public function interact(InputInterface $input, OutputInterface $output, Composer $composer)
+    public function getProductValueClass()
     {
-        $helper = new QuestionHelper();
-
-        if ($this->fieldName === null) {
-            $fieldNameQuestion = new Question(
-                sprintf(
-                    'Please enter the field name: [<info>%s</info>]',
-                    $this->defaultField
-                ),
-                $this->defaultField
-            );
-            $fieldNameQuestion->setValidator(function ($value) {
-                if (!preg_match('/^[a-z][A-Za-z0-9]*$/', $value)) {
-                    throw new \RuntimeException(
-                        'The field name should contain only alphanumeric characters and start with a lowercase letter.'
-                    );
-                }
-
-                return $value;
-            })->setMaxAttempts(2);
-
-            $this->fieldName = $helper->ask($input, $output, $fieldNameQuestion);
-        }
-
-        $confirmation = new ConfirmationQuestion(sprintf(
-            'You are about to to add a many-to-many reference data of type "%s" in the "%s" field of your Akeneo ProductValue class [<info>yes</info>]',
-            $this->namespace === null ? $this->class : ($this->namespace  .'\\'. $this->class),
-            $this->fieldName
-        ));
-
-        return $helper->ask($input, $output, $confirmation);
+        return $this->namespace . '\\Entity\\ProductValue';
     }
 
     public function applyTo(BundleBuilder $builder)
     {
         $builder->ensureClassExists(
             'Entity/ProductValue.php',
-            $this->namespace.'\\Entity\\ProductValue',
-            new ProductValueCodeGenerator('ProductValue', $this->namespace.'\\Entity')
+            $this->getProductValueClass(),
+            new ProductValueCodeGenerator(
+                ...Helper\ClassName::extractClassAndNamespace($this->getProductValueClass())
+            )
         );
 
         $visitor = new CodeGeneratorApplierVisitor();
@@ -155,12 +111,11 @@ class ManyToManyColorRGBRule implements RuleInterface
         $visitor->appendPropertyCodeGenerator(
             new DoctrineEntityReferenceFieldCodeGenerator(
                 $this->getFieldName(),
-                'ColorRGB',
-                'Kiboko\\Component\\AkeneoProductValuesPackage\\Model',
+                ...Helper\ClassName::extractClassAndNamespace($this->referenceClass),
                 [
                     new DoctrineManyToManyAnnotationGenerator(
                         [
-                            'targetEntity' => 'Kiboko\\Component\\AkeneoProductValuesPackage\\Model\\ColorRGB'
+                            'targetEntity' => $this->referenceClass
                         ]
                     ),
                     new DoctrineJoinTableAnnotationGenerator(
@@ -194,21 +149,19 @@ class ManyToManyColorRGBRule implements RuleInterface
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldGetMethodCodeGenerator(
                 $this->getFieldName(),
-                'ColorRGB',
-                'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
+                ...Helper\ClassName::extractClassAndNamespace($this->referenceClass)
             )
         );
 
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldSetMethodCodeGenerator(
                 $this->getFieldName(),
-                'ColorRGB',
-                'Kiboko\\Component\\AkeneoProductValuesPackage\\Model'
+                ...Helper\ClassName::extractClassAndNamespace($this->referenceClass)
             )
         );
 
         $builder->visitClassDefinition(
-            $this->namespace . '\\Entity\\ProductValue',
+            $this->getProductValueClass(),
             [
                 $visitor
             ]
@@ -216,11 +169,11 @@ class ManyToManyColorRGBRule implements RuleInterface
     }
 
     /**
-     * @return string
+     * @param string $referenceClass
      */
-    public function getName()
+    protected function setReferenceClass($referenceClass)
     {
-        return 'color.rgb.many-to-many';
+        $this->referenceClass = $referenceClass;
     }
 
     /**
@@ -228,6 +181,14 @@ class ManyToManyColorRGBRule implements RuleInterface
      */
     public function getReferenceClass()
     {
-        return ColorRGB::class;
+        return $this->referenceClass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultField()
+    {
+        return $this->defaultField;
     }
 }

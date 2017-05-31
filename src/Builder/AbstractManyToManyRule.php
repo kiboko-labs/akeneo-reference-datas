@@ -152,7 +152,9 @@ abstract class AbstractManyToManyRule implements ManyToManyReferenceRuleInterfac
             new DoctrineEntityReferenceFieldGetMethodCodeGenerator(
                 $this->getFieldName(),
                 $className,
-                $namespace
+                $namespace,
+                false,
+                true
             )
         );
 
@@ -160,7 +162,9 @@ abstract class AbstractManyToManyRule implements ManyToManyReferenceRuleInterfac
             new DoctrineEntityReferenceFieldSetMethodCodeGenerator(
                 $this->getFieldName(),
                 $className,
-                $namespace
+                $namespace,
+                false,
+                true
             )
         );
 

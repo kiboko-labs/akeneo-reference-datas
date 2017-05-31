@@ -116,7 +116,7 @@ abstract class AbstractManyToOneRule implements ManyToOneReferenceRuleInterface
                 [
                     new DoctrineManyToOneAnnotationGenerator(
                         [
-                            'targetEntity' => $this->referenceClass
+                            'targetEntity' => $this->getReferenceClass()
                         ]
                     ),
                     new DoctrineJoinColumnAnnotationGenerator(
@@ -132,14 +132,14 @@ abstract class AbstractManyToOneRule implements ManyToOneReferenceRuleInterface
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldGetMethodCodeGenerator(
                 $this->getFieldName(),
-                ...Helper\ClassName::extractClassAndNamespace($this->referenceClass)
+                ...Helper\ClassName::extractClassAndNamespace($this->getReferenceClass())
             )
         );
 
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldSetMethodCodeGenerator(
                 $this->getFieldName(),
-                ...Helper\ClassName::extractClassAndNamespace($this->referenceClass)
+                ...Helper\ClassName::extractClassAndNamespace($this->getReferenceClass())
             )
         );
 

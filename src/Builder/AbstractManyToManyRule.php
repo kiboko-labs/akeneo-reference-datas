@@ -117,7 +117,7 @@ abstract class AbstractManyToManyRule implements ManyToManyReferenceRuleInterfac
                 [
                     new DoctrineManyToManyAnnotationGenerator(
                         [
-                            'targetEntity' => $this->referenceClass
+                            'targetEntity' => $this->getReferenceClass()
                         ]
                     ),
                     new DoctrineJoinTableAnnotationGenerator(
@@ -151,14 +151,16 @@ abstract class AbstractManyToManyRule implements ManyToManyReferenceRuleInterfac
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldGetMethodCodeGenerator(
                 $this->getFieldName(),
-                ...Helper\ClassName::extractClassAndNamespace($this->referenceClass)
+                $className,
+                $namespace
             )
         );
 
         $visitor->appendMethodCodeGenerator(
             new DoctrineEntityReferenceFieldSetMethodCodeGenerator(
                 $this->getFieldName(),
-                ...Helper\ClassName::extractClassAndNamespace($this->referenceClass)
+                $className,
+                $namespace
             )
         );
 

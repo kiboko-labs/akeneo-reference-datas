@@ -6,7 +6,7 @@ class ClassName
 {
     public static function extractClassAndNamespace($className)
     {
-        $offset = strpos($className, '\\');
+        $offset = strrpos($className, '\\');
         if ($offset === false) {
             return [$className, null];
         }

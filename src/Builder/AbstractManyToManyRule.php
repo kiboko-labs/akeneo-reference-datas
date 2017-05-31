@@ -193,4 +193,9 @@ abstract class AbstractManyToManyRule implements ManyToManyReferenceRuleInterfac
     {
         return $this->defaultField;
     }
+
+    public function getRuleName()
+    {
+        return static::getName();
+    }
 }

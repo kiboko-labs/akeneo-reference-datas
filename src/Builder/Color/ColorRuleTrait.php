@@ -96,6 +96,6 @@ trait ColorRuleTrait
      */
     public static function getName()
     {
-        return sprintf('%s.%s', static::NAME, static::TYPE);
+        return sprintf('%s.%s', static::TYPE, static::NAME);
     }
 }

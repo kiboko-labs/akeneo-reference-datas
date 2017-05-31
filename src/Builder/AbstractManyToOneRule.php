@@ -174,4 +174,9 @@ abstract class AbstractManyToOneRule implements ManyToOneReferenceRuleInterface
     {
         return $this->defaultField;
     }
+
+    public function getRuleName()
+    {
+        return static::getName();
+    }
 }
